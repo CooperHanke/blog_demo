@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8" />
+    <title>Results</title>
+</head>
+<body>
+    <h1>Results</h1>
+    <h2>Your guess was <span th:text="${guess}">What guess?</span></h2>
+    <h2>Number to guess was <span th:text="${target}">No number to guess</span></h2>
+    <h2><span th:if="${correct}">Your guess was the same as the computer!</span>
+        <span th:if="!${correct}">Your guess was wrong. Please play again!</span></h2>
+    <h2><a href="/roll-dice">Click to play again!</a></h2>
+</body>
+</html>
