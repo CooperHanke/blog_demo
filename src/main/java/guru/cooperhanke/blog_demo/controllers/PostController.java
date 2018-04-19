@@ -4,30 +4,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-
 @Controller
 public class PostController {
+
+    private final PostService postService;
+
+    public PostController(PostService postService) {
+        this.postService = postService;
+    }
+
     @GetMapping("/posts")
     public String post(Model model) {
-        ArrayList<Post> posts = new ArrayList<>();
-        Post post1 = new Post();
-        Post post2 = new Post();
-        post1.setTitle("First Test");
-        post2.setTitle("Second Test");
-        post1.setBody("From arraylist");
-        post2.setBody("From arraylist");
-        model.addAttribute("post1", post1);
-        model.addAttribute("post2", post2);
+        model.addAttribute("posts", postService.findAll());
         return "posts/index";
     }
 
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable int id, Model model) {
-        Post post = new Post();
-        post.setTitle("Test Post " + id);
-        post.setBody("Body of test post " + id);
-        model.addAttribute("post", post);
+        model.addAttribute("post", postService.findOne(id));
         return "posts/show";
     }
 

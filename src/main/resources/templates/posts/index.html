@@ -42,11 +42,9 @@
             <div class="post-preview">
                 <a href="/posts/2">
                     <h2 class="post-title">
-                        <p th:text="${post1.title}"></p>
+                        <p th:text="${posts[0].title}"></p>
                     </h2>
-                    <h3 class="post-subtitle" th:text="${post1.body}">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
+                    <h3 class="post-subtitle" th:text="${posts[0].body}"></h3>
                 </a>
                 <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
             </div>
@@ -54,23 +52,17 @@
             <div class="post-preview">
                 <a href="/posts/3">
                     <h2 class="post-title">
-                        <p th:text="${post2.title}"></p>
+                        <p th:text="${posts[1].title}"></p>
                     </h2>
-                    <h3 class="post-subtitle">
-                        We predict too much for the next year and yet far too little for the next ten.
-                    </h3>
+                    <h3 class="post-subtitle" th:text="${posts[1].body}"></h3>
                 </a>
                 <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
             </div>
             <hr />
             <div class="post-preview">
                 <a href="/posts/4">
-                    <h2 class="post-title">
-                        Failure is not an option
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Many say exploration is part of our destiny, but it’s actually our duty to future generations.
-                    </h3>
+                    <h2 class="post-title" th:text="${posts[2].title}"></h2>
+                    <h3 class="post-subtitle" th:text="${posts[2].body}"></h3>
                 </a>
                 <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
             </div>
