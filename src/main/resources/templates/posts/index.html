@@ -23,56 +23,72 @@
     </div>
 </header>
 
-<!-- Main Content -->
+
+<!-- Recreate to use loop for each post -->
 <div class="container">
     <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" th:each="post: ${posts}">
             <div class="post-preview">
-                <a href="/posts/1">
-                    <h2 class="post-title">
-                        The official slow but steady start of this site, and the documentation of it.
-                    </h2>
-                    <h3 class="post-subtitle">
-                        Programming and self-hosting this site: showing demonstrated knowledge by displaying scar tissue.
-                    </h3>
+                <a th:href="@{'/posts/' + ${post.id}}">
+                    <h2 class="post-title" th:text="${post.title}">Post Title</h2>
+                    <!--<h3 class="post-subtitle">-->
+                        <!--Programming and self-hosting this site: showing demonstrated knowledge by displaying scar tissue.-->
+                    <!--</h3>-->
                 </a>
                 <p class="post-meta">Posted by <a href="#">Cooper</a> on March 07, 2018</p>
             </div>
             <hr />
-            <div class="post-preview">
-                <a href="/posts/2">
-                    <h2 class="post-title">
-                        <p th:text="${posts[0].title}"></p>
-                    </h2>
-                    <h3 class="post-subtitle" th:text="${posts[0].body}"></h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>
-            </div>
-            <hr />
-            <div class="post-preview">
-                <a href="/posts/3">
-                    <h2 class="post-title">
-                        <p th:text="${posts[1].title}"></p>
-                    </h2>
-                    <h3 class="post-subtitle" th:text="${posts[1].body}"></h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>
-            </div>
-            <hr />
-            <div class="post-preview">
-                <a href="/posts/4">
-                    <h2 class="post-title" th:text="${posts[2].title}"></h2>
-                    <h3 class="post-subtitle" th:text="${posts[2].body}"></h3>
-                </a>
-                <p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>
-            </div>
-            <hr />
-            <!-- Pager -->
-            <ul class="pager">
-                <li class="next">
-                    <a href="#">Older Posts &rarr;</a>
-                </li>
-            </ul>
+
+<!--&lt;!&ndash; Main Content &ndash;&gt;-->
+<!--<div class="container">-->
+    <!--<div class="row">-->
+        <!--<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">-->
+            <!--<div class="post-preview">-->
+                <!--<a href="/posts/1">-->
+                    <!--<h2 class="post-title">-->
+                        <!--The official slow but steady start of this site, and the documentation of it.-->
+                    <!--</h2>-->
+                    <!--<h3 class="post-subtitle">-->
+                        <!--Programming and self-hosting this site: showing demonstrated knowledge by displaying scar tissue.-->
+                    <!--</h3>-->
+                <!--</a>-->
+                <!--<p class="post-meta">Posted by <a href="#">Cooper</a> on March 07, 2018</p>-->
+            <!--</div>-->
+            <!--<hr />-->
+            <!--<div class="post-preview">-->
+                <!--<a href="/posts/2">-->
+                    <!--<h2 class="post-title">-->
+                        <!--<p th:text="${posts[0].title}"></p>-->
+                    <!--</h2>-->
+                    <!--<h3 class="post-subtitle" th:text="${posts[0].body}"></h3>-->
+                <!--</a>-->
+                <!--<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on September 18, 2014</p>-->
+            <!--</div>-->
+            <!--<hr />-->
+            <!--<div class="post-preview">-->
+                <!--<a href="/posts/3">-->
+                    <!--<h2 class="post-title">-->
+                        <!--<p th:text="${posts[1].title}"></p>-->
+                    <!--</h2>-->
+                    <!--<h3 class="post-subtitle" th:text="${posts[1].body}"></h3>-->
+                <!--</a>-->
+                <!--<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on August 24, 2014</p>-->
+            <!--</div>-->
+            <!--<hr />-->
+            <!--<div class="post-preview">-->
+                <!--<a href="/posts/4">-->
+                    <!--<h2 class="post-title" th:text="${posts[2].title}"></h2>-->
+                    <!--<h3 class="post-subtitle" th:text="${posts[2].body}"></h3>-->
+                <!--</a>-->
+                <!--<p class="post-meta">Posted by <a href="#">Start Bootstrap</a> on July 8, 2014</p>-->
+            <!--</div>-->
+            <!--<hr />-->
+            <!--&lt;!&ndash; Pager &ndash;&gt;-->
+            <!--<ul class="pager">-->
+                <!--<li class="next">-->
+                    <!--<a href="#">Older Posts &rarr;</a>-->
+                <!--</li>-->
+            <!--</ul>-->
         </div>
     </div>
 </div>

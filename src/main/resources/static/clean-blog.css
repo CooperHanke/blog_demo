@@ -402,3 +402,7 @@ body {
 .intro-header {
     background-image: url('/assets/img/home-bg.jpg');
 }
+
+.add-post-header {
+    background-image: url('/assets/img/post-sample-image.jpg');
+}

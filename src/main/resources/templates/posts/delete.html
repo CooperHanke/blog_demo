@@ -1,10 +1,41 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>$Title$</title>
-</head>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="partials/header :: head('Delete Post?')"></head>
+
 <body>
-$END$
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h1>Cooper Hanke's Professional Site</h1>
+                    <hr class="small" />
+                    <span class="subheading">An exposition of my passion in software development and system administration skills</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+    <h1>Are you sure you want to delete to post below?</h1>
+    <form th:action="@{/posts/{id}/delete(id=${id})}" method="post" th:object="${post}">
+        <input type="hidden" th:field="*{id}" />
+        <label for="title">Title</label>
+        <input id="title" type="text" th:field="*{title}" />
+        <br />
+        <label for="body">Body</label>
+        <textarea id="body" type="text" th:field="*{body}" />
+        <br />
+        <input type="submit" />
+    </form>
+</div>
+
+<footer th:replace="partials/footer :: footer"></footer>
 </body>
 </html>
