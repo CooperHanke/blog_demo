@@ -1,7 +1,9 @@
 package guru.cooperhanke.blog_demo.controllers;
 
 import guru.cooperhanke.blog_demo.models.Post;
+import guru.cooperhanke.blog_demo.models.User;
 import guru.cooperhanke.blog_demo.repositories.PostRepository;
+import guru.cooperhanke.blog_demo.repositories.UserRepositiory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -10,9 +12,13 @@ import org.springframework.web.bind.annotation.*;
 public class PostController {
 
     private final PostRepository postDao;
+    private final UserRepositiory userDao;
 
-    public PostController(PostRepository postDao) {
+    public PostController(
+            PostRepository postDao,
+            UserRepositiory userDao) {
         this.postDao = postDao;
+        this.userDao = userDao;
     }
 
     @GetMapping("/posts")
@@ -35,6 +41,9 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post post) {
+        User user = userDao.findOne(1L);
+        post.setUser(user);
+        System.out.println("post user: " + post.getUser().getEmail());
         postDao.save(post);
         return "redirect:/posts";
     }
