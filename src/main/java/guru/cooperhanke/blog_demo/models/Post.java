@@ -1,10 +1,11 @@
-package guru.cooperhanke.blog_demo.controllers;
+package guru.cooperhanke.blog_demo.models;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "posts")
 public class Post {
+    // A post should also have a date and the user who created it attached to a post object
 
     @GeneratedValue @Id
     private long id;

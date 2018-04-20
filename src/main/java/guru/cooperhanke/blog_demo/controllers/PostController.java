@@ -1,7 +1,7 @@
 package guru.cooperhanke.blog_demo.controllers;
 
-import guru.cooperhanke.blog_demo.controllers.repositories.PostRepository;
-import org.aspectj.weaver.ast.Test;
+import guru.cooperhanke.blog_demo.models.Post;
+import guru.cooperhanke.blog_demo.repositories.PostRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
