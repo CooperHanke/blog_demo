@@ -33,6 +33,11 @@
                 <li>
                     <a href="#">Contact</a>
                 </li>
+                <li>
+                    <form th:action="@{/logout}" th:method="post">
+                        <button class="btn-link btn">Logout</button>
+                    </form>
+                </li>
             </ul>
         </div>
         <!-- /.navbar-collapse -->
