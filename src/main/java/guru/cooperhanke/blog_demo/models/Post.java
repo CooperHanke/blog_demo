@@ -1,6 +1,10 @@
 package guru.cooperhanke.blog_demo.models;
 
 import javax.persistence.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 @Entity
 @Table(name = "posts")
@@ -16,6 +20,9 @@ public class Post {
     @Column(name="body", nullable = false)
     private String body;
 
+    @Column(name="created_on", nullable = false)
+    private Date createdOn = new Date();
+
     @OneToOne
     private User user;
 
@@ -26,6 +33,7 @@ public class Post {
         this.title = title;
         this.body = body;
         this.user = user;
+        this.createdOn = createdOn;
     }
 
     public String getTitle() {
@@ -54,5 +62,13 @@ public class Post {
 
     public void setUser(User user) {
         this.user = user;
+    }
+
+    public Date getCreatedOn() {
+        return createdOn;
+    }
+
+    public void setCreatedOn(Date createdOn) {
+        this.createdOn = createdOn;
     }
 }
