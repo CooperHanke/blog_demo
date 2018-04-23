@@ -1,22 +1,167 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Test Sign Up Page</title>
-</head>
+<head th:replace="partials/header :: head('Sign Up Today!')"></head>
 <body>
-<h1>Create an account</h1>
-<form th:action="@{/sign-up}" method="POST" th:object="${user}">
-    <label for="username">Username</label>
-    <input id="username" th:field="*{username}" />
+<style>
+    label.error {
+        float: none;
+        color: red;
+    }
+    .absolute-center {
+        margin: auto;
+        position: absolute;
+        top: -45%; left: 0; bottom: 0; right: 0;
+    }
 
-    <label for="email">Email</label>
-    <input id="email" th:field="*{email}" />
+    .absolute-center.is-responsive {
+        width: 50%;
+        height: 40%;
+        min-width: 200px;
+        max-width: 400px;
+        padding: 40px;
+    }
+</style>
+<nav th:replace="partials/navbar :: navbar"></nav>
 
-    <label for="password">Password</label>
-    <input id="password" type="password" th:field="*{password}" />
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <!--<hr class="small" />-->
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="container">
+    <form id="registration_form" class="well form-horizontal" th:action="@{/sign-up}" method="POST" th:object="${user}">
+        <fieldset>
 
-    <input value="Sign me up!" type="submit" />
-</form>
+            <!-- Form Name -->
+            <legend>
+                <h2><b>Registration Form</b></h2>
+            </legend><br />
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label">Username</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="username" placeholder="Username" class="form-control"  type="text" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Password</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="password" th:field="*{password}" placeholder="Password" class="form-control" type="password" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+
+            <div class="form-group">
+                <label class="col-md-4 control-label" >Confirm Password</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input name="confirm" placeholder="Confirm Password" class="form-control"  type="password" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Text input-->
+            <div class="form-group">
+                <label class="col-md-4 control-label">E-Mail</label>
+                <div class="col-md-4 inputGroupContainer">
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-envelope"></i></span>
+                        <input name="email" placeholder="E-Mail Address" class="form-control"  type="text" />
+                    </div>
+                </div>
+            </div>
+
+            <!-- Select Basic -->
+
+            <!-- Success message -->
+            <div class="alert alert-success" role="alert" id="success_message">Success <i class="glyphicon glyphicon-thumbs-up"></i> Success!.</div>
+
+            <!-- Button -->
+            <div class="form-group">
+                <label class="col-md-4 control-label"></label>
+                <div class="col-md-4"><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button id="register" type="submit" class="btn btn-warning" >&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SUBMIT <span class="glyphicon glyphicon-send"></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>
+                </div>
+            </div>
+
+        </fieldset>
+    </form>
+</div><!-- /.container -->
+<footer th:replace="partials/footer :: footer"></footer>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script type="text/javascript" src="http://ajax.aspnetcdn.com/ajax/jquery.validate/1.7/jquery.validate.min.js"></script>
+<script>
+    $(document).ready(function() {
+        $('#username').focus();
+        $('#registration_form').validate({
+            rules: {
+                username: {
+                    required: true,
+                    minlength: 8
+                },
+                email: {
+                    required: true,
+                    email: true
+                },
+                password: {
+                    required: true,
+                    minlength: 8
+                },
+                confirm_password: {
+                    required: true,
+                    minlength: 8,
+                    equalTo: '#password'
+                }
+            },
+            messages: {
+                username: {
+                    required: "Please use a valid username, that is at least 10 letters or numbers to register",
+                    minlength: "Username must be at least 8 characters"
+                },
+                email: {
+                    required: "Please use an email address to register",
+                    email: "Please enter a valid email address to register"
+                },
+                password: {
+                    required: "A password is required to register",
+                    minlength: "Password must be at least 8 characters in order to register"
+                },
+                confirm_password: {
+                    required: "Please confirm your password to register",
+                    equalTo: "Passwords do not match, please try again",
+                    minlength: "Confirm the password is at least 8 characters in order to register"
+                }
+            }
+        });
+        $('input').on('blur', function() {
+            if ($("#registration_form").valid()) {
+                $('#register').prop('disabled', false);
+            } else {
+                $('#register').prop('disabled', 'disabled');
+            }
+        });
+    });
+</script>
 </body>
 </html>

@@ -1,15 +1,11 @@
 package guru.cooperhanke.blog_demo.models;
 
 import javax.persistence.*;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 import java.util.Date;
 
 @Entity
 @Table(name = "posts")
 public class Post {
-    // A post should also have a date and the user who created it attached to a post object
 
     @GeneratedValue @Id
     private long id;
@@ -28,7 +24,7 @@ public class Post {
 
     public Post() { }
 
-    public Post(long id, String title, String body, User user) {
+    public Post(long id, String title, String body, User user, Date createdOn) {
         this.id = id;
         this.title = title;
         this.body = body;
