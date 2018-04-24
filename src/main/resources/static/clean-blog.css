@@ -491,8 +491,3 @@ body {
 
 /* For the sign-up elements */
 #success_message{ display: none;}
-
-/* for logout link when user is signed in */
-#logout_form:hover > a {
-    text-decoration: none;
-}

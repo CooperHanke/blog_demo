@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 </head>
 <body>
@@ -19,7 +19,7 @@
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="/">Home</a>
+                    <a href="#">Home</a>
                 </li>
                 <li>
                     <a href="/about">About</a>
@@ -31,19 +31,16 @@
                     <a href="/posts">Blogs</a>
                 </li>
                 <li>
-                    <a href="/contact">Contact</a>
+                    <a href="#">Contact</a>
                 </li>
-                <li sec:authorize="!isAuthenticated()">
+                <li>
                     <a href="#myModal" class="trigger-btn" data-toggle="modal">Login</a>
                 </li>
-                <li sec:authorize="isAuthenticated()">
-                    <form id="logout_form" th:action="@{/logout}" th:method="post" style="margin-top: 12px; text-decoration: none;">
-                        <a href="javascript:{}" onclick="document.getElementById('logout_form').submit(); return false;">Logout</a>
-                    </form>
-                </li>
-                <li sec:authorize="isAuthenticated()">
-                    <a th:text="${#authentication.principal.username}"></a>
-                </li>
+                <!--<li>-->
+                    <!--<form th:action="@{/logout}" th:method="post">-->
+                        <!--<button class="btn-link btn">Logout</button>-->
+                    <!--</form>-->
+                <!--</li>-->
             </ul>
         </div>
         <!-- /.navbar-collapse -->
