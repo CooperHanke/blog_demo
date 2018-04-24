@@ -53,9 +53,4 @@ public class UserController {
         SecurityContext context = SecurityContextHolder.getContext();
         context.setAuthentication(auth);
     }
-
-    @GetMapping("/resume")
-    public String showResume() {
-        return "users/resume";
-    }
 }
