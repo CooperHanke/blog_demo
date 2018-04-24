@@ -8,15 +8,10 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 @Controller
 public class AuthenticationController {
-    @GetMapping("/login")
-    public String showLoginForm() {
-        return "users/login";
-    }
 
     @PostMapping("/login")
     public String loginUser() {
         User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        System.out.println("user logged in successfully: " + user.getUsername());
-        return "redirect: /posts";
+        return "redirect:/posts";
     }
 }
