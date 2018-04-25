@@ -63,6 +63,7 @@ public class PostController {
 
     @PostMapping("/posts/{id}/edit")
     public String submitEdit(@PathVariable long id, @ModelAttribute Post post) {
+        post.setUser(usrSvc.loggedInUser());
         postDao.save(post);
         return "redirect:/posts/{id}";
     }
