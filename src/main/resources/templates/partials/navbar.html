@@ -25,13 +25,13 @@
                     <a href="/about">About</a>
                 </li>
                 <li>
-                    <a href="/posts">Blogs</a>
-                </li>
-                <li>
                     <a href="#">Contact</a>
                 </li>
                 <li sec:authorize="!isAuthenticated()">
                     <a href="#myModal" class="trigger-btn" data-toggle="modal">Login</a>
+                </li>
+                <li sec:authorize="isAuthenticated()">
+                    <a href="/posts/create">Create Post</a>
                 </li>
                 <li sec:authorize="isAuthenticated()">
                     <form id="logout_form" th:action="@{/logout}" th:method="post" style="margin-top: 12px; text-decoration: none;">

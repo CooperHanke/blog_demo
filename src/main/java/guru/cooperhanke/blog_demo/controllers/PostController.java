@@ -5,7 +5,6 @@ import guru.cooperhanke.blog_demo.models.User;
 import guru.cooperhanke.blog_demo.repositories.PostRepository;
 import guru.cooperhanke.blog_demo.repositories.UserRepository;
 import guru.cooperhanke.blog_demo.services.UserServices;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
