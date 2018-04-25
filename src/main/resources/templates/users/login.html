@@ -1,24 +1,72 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head>
-    <meta charset="UTF-8" />
-    <title>Test Log In Page</title>
-</head>
+
+<head th:replace="partials/header :: head('Blog Posts')"></head>
+
 <body>
-<h1>Log In</h1>
-<div th:if="${param.error}">
-    Invalid Username and Password.
-</div>
-<div th:if="${param.logout}">
-    You have been logged out.
+
+<nav th:replace="partials/navbar :: navbar"></nav>
+
+<!-- Page Header -->
+<!-- Set your background image for this header on the line below. -->
+<header class="intro-header">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                <div class="site-heading">
+                    <h2>Welcome</h2>
+                    <hr class="small" />
+                    <span class="subheading">I am Cooper, and this site is an exposition of my passion in software development and system administration skills</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</header>
+
+
+<!-- Recreate to use loop for each post -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" th:each="post: ${posts}">
+            <div class="post-preview">
+                <a th:href="@{'/posts/' + ${post.id}}">
+                    <h2 class="post-title" th:text="${post.title}">Post Title</h2>
+                </a>
+                <p class="post-meta">Posted by <a href="#" th:text="${post.user.username}"></a> on <span th:text="${#dates.format(post.createdOn, 'MMMM dd, yyyy') + ' @ ' + #dates.format(post.createdOn, 'hh:mm a')}"></span></p>
+            </div>
+            <hr />
+        </div>
+    </div>
 </div>
 
-<form th:action="@{/login}" method="post">
-    <label for="username">Username</label>
-    <input id="username" name="username" type="text" />
-    <label for="password">Password</label>
-    <input id="password" name="password" type="password" />
-    <input type="submit" value="Log In" />
-</form>
+<hr />
+
+<footer th:replace="partials/footer :: footer"></footer>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+
+<!-- Bootstrap Core JavaScript -->
+<!-- Latest compiled and minified JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<!-- Contact Form JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jqBootstrapValidation/1.3.7/jqBootstrapValidation.min.js"></script>
+<script src="../assets/js/contact_me.js"></script>
+
+<!-- Theme JavaScript -->
+<script src="../assets/js/clean-blog.min.js"></script>
+
+<!-- When from the login controller, the page will now load the error banner -->
+<script type="text/javascript">
+    $(document).ready(function(){
+        $(window).on('load',function(){
+            $('#myModal').modal('show');
+            setTimeout(function(){
+                $('#error').show();
+                $('#target-field').focus();
+            }, 300);
+        });
+    });
+</script>
 </body>
+
 </html>

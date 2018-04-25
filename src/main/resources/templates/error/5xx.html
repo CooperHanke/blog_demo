@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<head th:replace="partials/header :: head(${post.title})"></head>
+<head th:replace="partials/header :: head('Web Server Error')"></head>
 
 <body>
 <nav th:replace="partials/navbar :: navbar"></nav>
@@ -13,31 +13,21 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <div class="post-heading">
-                    <!--<h1>The official slow but steady start of this site, and the documentation of it.</h1>-->
-                    <h1 th:text="${post.title}"></h1>
-                    <!--<h2 class="subheading">Programming and self-hosting this site: showing demonstrated knowledge by displaying scar tissue.</h2>-->
-                    <span class="meta">Posted by <a href="#" th:text="${post.user.username}">User</a> on <span th:text="${#dates.format(post.createdOn, 'MMMM dd, yyyy') + ' @ ' + #dates.format(post.createdOn, 'hh:mm a')}"></span></span>
+                    <h1>Sorry, an internal server error has occurred!!!</h1>
                 </div>
             </div>
         </div>
     </div>
 </header>
-
-<!-- Post Content -->
 <article>
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p th:text="${post.body}"></p>
-                <th:block th:if="${isOwnedBy}">
-                    <a th:href="@{/posts/{id}/edit(id=${post.id})}"><button>Edit</button></a>
-                    <a th:href="@{/posts/{id}/delete(id=${post.id})}"><button>Delete</button></a>
-                </th:block>
+                <p>Sorry, an internal server error has occurred!</p>
             </div>
         </div>
     </div>
 </article>
-
 <hr />
 
 <!-- Footer -->

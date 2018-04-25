@@ -4,6 +4,7 @@ import guru.cooperhanke.blog_demo.models.Post;
 import guru.cooperhanke.blog_demo.models.User;
 import guru.cooperhanke.blog_demo.repositories.PostRepository;
 import guru.cooperhanke.blog_demo.repositories.UserRepository;
+import guru.cooperhanke.blog_demo.services.UserServices;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -14,12 +15,15 @@ public class PostController {
 
     private final PostRepository postDao;
     private final UserRepository userDao;
+    private final UserServices usrSvc;
 
     public PostController(
             PostRepository postDao,
-            UserRepository userDao) {
+            UserRepository userDao,
+            UserServices usrSvc) {
         this.postDao = postDao;
         this.userDao = userDao;
+        this.usrSvc = usrSvc;
     }
 
     @GetMapping("/posts")
@@ -30,7 +34,11 @@ public class PostController {
 
     @GetMapping("/posts/{id}")
     public String singlePost(@PathVariable long id, Model model) {
-        model.addAttribute("post", postDao.findById(id));
+        Post post = postDao.findById(id);
+        User user = usrSvc.loggedInUser();
+        model.addAttribute("post", post);
+        model.addAttribute("isOwnedBy", usrSvc.isOwnedBy(post.getUser()));
+        model.addAttribute("isLoggedIn", usrSvc.isLoggedIn());
         return "posts/show";
     }
 
@@ -42,9 +50,8 @@ public class PostController {
 
     @PostMapping("/posts/create")
     public String create(@ModelAttribute Post post) {
-        User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        User user = usrSvc.loggedInUser();
         post.setUser(user);
-        System.out.println("post user: " + post.getUser().getEmail());
         postDao.save(post);
         return "redirect:/posts";
     }
