@@ -28,7 +28,7 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
-                <p th:text="${post.body}"></p>
+                <p th:utext="${post.body}"></p>
                 <div class="btn-group" style="display: inline-block">
                     <th:block th:if="${isOwnedBy}">
                         <a th:href="@{/posts/{id}/edit(id=${post.id})}">
