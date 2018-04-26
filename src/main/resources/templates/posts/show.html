@@ -29,12 +29,16 @@
         <div class="row">
             <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                 <p th:text="${post.body}"></p>
-                <th:block th:if="${isOwnedBy}">
-                    <a th:href="@{/posts/{id}/edit(id=${post.id})}"><button>Edit</button></a>
-                    <form id="delete_form" method="post" th:action="@{/posts/{id}/delete(id=${post.id})}">
-                        <button id="delete_button">Delete</button>
-                    </form>
-                </th:block>
+                <div class="btn-group" style="display: inline-block">
+                    <th:block th:if="${isOwnedBy}">
+                        <a th:href="@{/posts/{id}/edit(id=${post.id})}">
+                            <button type="button" class="btn btn-default">Edit</button>
+                        </a>
+                        <form style="display: inline;" id="delete_form" method="post" th:action="@{/posts/{id}/delete(id=${post.id})}">
+                            <button id="delete_button" type="button" class="btn btn-danger">Delete</button>
+                        </form>
+                    </th:block>
+                </div>
             </div>
         </div>
     </div>
