@@ -31,7 +31,9 @@
                 <p th:text="${post.body}"></p>
                 <th:block th:if="${isOwnedBy}">
                     <a th:href="@{/posts/{id}/edit(id=${post.id})}"><button>Edit</button></a>
-                    <a th:href="@{/posts/{id}/delete(id=${post.id})}"><button>Delete</button></a>
+                    <form id="delete_form" method="post" th:action="@{/posts/{id}/delete(id=${post.id})}">
+                        <button id="delete_button">Delete</button>
+                    </form>
                 </th:block>
             </div>
         </div>
@@ -55,7 +57,16 @@
 
 <!-- Theme JavaScript -->
 <script src="../assets/js/clean-blog.min.js"></script>
-
+<script>
+    $(document).ready(function(){
+        $('#delete_button').click(function(){
+            var toDelete = confirm('Are you sure you want to delete this post?');
+            if (toDelete === true) {
+                $('#delete_form').submit();
+            } else return false;
+        });
+    });
+</script>
 </body>
 
 </html>
