@@ -6,19 +6,18 @@ import javax.persistence.*;
 @Table(name = "users")
 public class User {
 
-    @Id
-    @GeneratedValue
-    private Long id;
+    @Id @GeneratedValue
+    private long id;
 
     @Column(nullable = false)
 
     private String username;
 
     @Column(nullable = false)
-    String email;
+    private String email;
 
     @Column(nullable = false)
-    String password;
+    private String password;
 
     public User(User copy) {
         id = copy.id; // This line is SUPER important! Many things won't work if it's absent
