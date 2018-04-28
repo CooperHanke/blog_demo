@@ -39,7 +39,6 @@ public class UserController {
         user.setPassword(hash);
         users.save(user);
         authenticate(user);
-        System.out.println("User logged into server is: " + user.getUsername());
         return "redirect:/posts";
     }
 
