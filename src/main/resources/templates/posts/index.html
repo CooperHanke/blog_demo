@@ -22,25 +22,21 @@
         </div>
     </div>
 </header>
-
-
 <!-- Recreate to use loop for each post -->
 <div class="container">
-    <div class="row">
-        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" th:each="post: ${posts}">
+    <div class="row" th:each="post: ${posts}">
+        <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-preview">
                 <a th:href="@{'/posts/' + ${post.id}}">
                     <h2 class="post-title" th:text="${post.title}">Post Title</h2>
                 </a>
-                <p class="post-meta">Posted by <a href="#" th:text="${post.user.username}"></a> on <span th:text="${#dates.format(post.createdOn, 'MMMM dd, yyyy') + ' @ ' + #dates.format(post.createdOn, 'hh:mm a')}"></span></p>
+                <p class="post-meta">Posted by <a href="#" th:text="${post.user.getUsername()}"></a> on <span th:text="${#dates.format(post.createdOn, 'MMMM dd, yyyy') + ' @ ' + #dates.format(post.createdOn, 'hh:mm a')}"></span></p>
             </div>
             <hr />
         </div>
     </div>
 </div>
-
 <hr />
-
 <footer th:replace="partials/footer :: footer"></footer>
 <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
