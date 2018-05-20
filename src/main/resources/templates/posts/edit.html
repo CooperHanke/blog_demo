@@ -22,20 +22,6 @@
         </div>
     </div>
 </header>
-<!--<div class="container">-->
-    <!--<div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">-->
-        <!--<form th:action="@{/posts/{id}/edit(id=${id})}" method="post" th:object="${post}">-->
-            <!--<input type="hidden" th:field="*{id}" />-->
-            <!--<label for="title">Title</label>-->
-            <!--<input id="title" th:utext="${title}" th:field="*{title}" />-->
-            <!--<br />-->
-            <!--<label for="body">Body</label>-->
-            <!--<textarea id="body" th:utext="${body}" th:field="*{body}"></textarea>-->
-            <!--<br />-->
-            <!--<input type="submit" />-->
-        <!--</form>-->
-    <!--</div>-->
-<!--</div>-->
 <div class="container-fluid">
     <div class="col-lg-10 col-lg-offset-1 col-md-10 col-md-offset-1">
         <form th:action="@{/posts/{id}/edit(id=${id})}" method="post" th:object="${post}">
